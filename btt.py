@@ -27,12 +27,14 @@ def get_all_episodes(url, filename, folder):
             fetch_torrent_file(URL_BASE + ep_dl_url, name, folder)
 
 def fetch_torrent_file(episode_url, torrent_name, folder):
+    logging.debug('fetch_torrent_file():' + episode_url)
     URL_DOWNLOAD_BASE = 'http://btbtt.me/'
     r = requests.get(episode_url)
     if r.status_code == 200:
         content = r.content.decode('utf-8')
-        dl_url_pattern = ur'<a href="([a-z0-9.-]+)" target="_blank">'
+        dl_url_pattern = ur'<a href="(attach-[a-z0-9.-]+)" target="_blank".*>'
         url = re.findall(dl_url_pattern, content, re.UNICODE)
+        logging.debug(url)
         torrent_file_url = URL_DOWNLOAD_BASE + url[0]
 
         if not os.path.exists(folder):
