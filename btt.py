@@ -52,7 +52,8 @@ if __name__ == '__main__':
     #collect_url = 'http://www.btbtt.co/thread-index-fid-981-tid-4347813-page-1-scrollbottom-1.htm'
     #filename = ur'【極影字幕社】 ★4月新番 【進擊的巨人 2】【Shingeki no Kyojin 2】 【[0-9v]+】BIG5 MP4_720P.torrent'
 
-    logging.info(collect_url)
-    logging.info(filename)
+    logging.debug(collect_url)
+    logging.debug(filename)
     logging.info(torrent_folder)
     get_all_episodes(collect_url, filename, torrent_folder)
+    logging.info('------ end ------')
